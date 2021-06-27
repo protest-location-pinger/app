@@ -79,7 +79,7 @@ export class UsersService {
       },
     };
 
-    const myToken = await generateJWT(payload);
+    const myToken = await this.generateJWT(payload);
 
     return {
       status: true,
@@ -107,7 +107,7 @@ export class UsersService {
       },
     };
 
-    const myToken = await generateJWT(payload);
+    const myToken = await this.generateJWT(payload);
 
     return {
       status: true,
@@ -115,14 +115,12 @@ export class UsersService {
       payload: { token: myToken },
     };
   }
-}
-
-/**
+  /**
  * Signs a payload as a JWT.
  * @param payload The payload.
  * @returns Promise of the signed token.
  */
-async function generateJWT(payload: {}) {
+async generateJWT(payload: {}) {
   return new Promise((resolve, reject) => {
     jwt.sign(
       payload,
@@ -137,6 +135,9 @@ async function generateJWT(payload: {}) {
     );
   });
 }
+}
+
+
 
 interface ReturnResult {
   status: boolean;
